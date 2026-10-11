@@ -1,0 +1,18 @@
+# Pin the tool release independently of source dependencies.
+set(ORION_RUNTIME_IMPORTER_TAG manual-38)
+set(ORION_RUNTIME_IMPORTER_SHA256 7e4aadfabc86a4370e9ca33772302b0e9c290c9d088796054e6fb922e603c6e5)
+set(ORION_RUNTIME_IMPORTER_DIR "${PROJECT_SOURCE_DIR}/.tools/runtime-importer-${ORION_RUNTIME_IMPORTER_TAG}")
+set(_rti_archive "${PROJECT_SOURCE_DIR}/.tools/Runtime-Importer.zip")
+if(NOT EXISTS "${ORION_RUNTIME_IMPORTER_DIR}/.verified-${ORION_RUNTIME_IMPORTER_SHA256}")
+    file(MAKE_DIRECTORY "${PROJECT_SOURCE_DIR}/.tools")
+    if(EXISTS "${_rti_archive}")
+        file(SHA256 "${_rti_archive}" _sha)
+    endif()
+    if(NOT _sha STREQUAL ORION_RUNTIME_IMPORTER_SHA256)
+        file(DOWNLOAD "https://github.com/AmethystAPI/Runtime-Importer/releases/download/${ORION_RUNTIME_IMPORTER_TAG}/Runtime-Importer.zip"
+            "${_rti_archive}" EXPECTED_HASH "SHA256=${ORION_RUNTIME_IMPORTER_SHA256}" TLS_VERIFY ON SHOW_PROGRESS)
+    endif()
+    file(ARCHIVE_EXTRACT INPUT "${_rti_archive}" DESTINATION "${ORION_RUNTIME_IMPORTER_DIR}")
+    file(WRITE "${ORION_RUNTIME_IMPORTER_DIR}/.verified-${ORION_RUNTIME_IMPORTER_SHA256}" "${ORION_RUNTIME_IMPORTER_TAG}\n")
+endif()
+find_program(DOTNET_EXECUTABLE dotnet REQUIRED)

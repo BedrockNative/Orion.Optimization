@@ -1,0 +1,12 @@
+[submodule "external/libhat"]
+	path = external/libhat
+	url = https://github.com/BasedInc/libhat.git
+[submodule "external/SafetyHook"]
+	path = external/SafetyHook
+	url = https://github.com/cursey/safetyhook.git
+[submodule "external/GSL"]
+	path = external/GSL
+	url = https://github.com/microsoft/GSL.git
+[submodule "external/zydis"]
+	path = external/zydis
+	url = https://github.com/zyantific/zydis.git

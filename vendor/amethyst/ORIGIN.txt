@@ -1,0 +1,8 @@
+Import resolution extracted from https://github.com/FrederoxDev/Amethyst
+Revision: 43f59221635e6303d1c9405c5f56c6b01f4d3e5c
+Source: AmethystAPI/src/amethyst/runtime/importing and utility/SimpleBinaryReader.hpp.
+Apache-2.0: see LICENSE. Effective-address helper also adapted from amethyst/Memory.cpp.
+Local changes: standalone includes/logging/memory adapters; lowercase libhat include;
+missing-section check; bounded PE section-name comparisons; preserve resolved state on destruction.
+No Amethyst loader, game headers or runtime dependencies are included.
+Signature resolution now checks committed readable sections (executable for functions) and rejects ambiguous matches.

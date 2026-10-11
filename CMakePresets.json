@@ -1,0 +1,23 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "linux-clang-cl-release",
+      "displayName": "Windows x64 DLL from Linux (clang-cl)",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/release",
+      "toolchainFile": "${sourceDir}/cmake/clang-cl-x64.cmake",
+      "cacheVariables": {"CMAKE_BUILD_TYPE": "Release", "XWIN_ROOT": "$env{XWIN_ROOT}"}
+    },
+    {
+      "name": "windows-clang-cl-release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/windows-release",
+      "cacheVariables": {"CMAKE_BUILD_TYPE": "Release", "CMAKE_C_COMPILER": "clang-cl", "CMAKE_CXX_COMPILER": "clang-cl", "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"}
+    }
+  ],
+  "buildPresets": [
+    {"name": "linux-clang-cl-release", "configurePreset": "linux-clang-cl-release"},
+    {"name": "windows-clang-cl-release", "configurePreset": "windows-clang-cl-release"}
+  ]
+}
